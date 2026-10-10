@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://titiarigbe.com/sitemap.xml
