@@ -379,7 +379,6 @@ document.querySelectorAll('#nav a[href^="#"], #nav .nav-logo').forEach(function(
 
   form.addEventListener('submit', function(e){
     e.preventDefault();
-    if (form._honey.value) return;
 
 var name = form.elements['name'].value.trim(),
     email = form.elements['email'].value.trim(),
@@ -412,8 +411,7 @@ var body = new URLSearchParams({
     name: name,
     email: email,
     topic: topic,
-    message: message,
-    _honey: form.elements['_honey'].value
+    message: message
 }).toString();
 
     fetch('/', {
