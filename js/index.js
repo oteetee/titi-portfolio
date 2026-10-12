@@ -381,14 +381,14 @@ document.querySelectorAll('#nav a[href^="#"], #nav .nav-logo').forEach(function(
     e.preventDefault();
     if (form._honey.value) return;
 
-    var name = form.name.value.trim(),
-        email = form.email.value.trim(),
-        topic = form.topic.value,
-        message = form.message.value.trim();
+var name = form.elements['name'].value.trim(),
+    email = form.elements['email'].value.trim(),
+    topic = form.elements['topic'].value,
+    message = form.elements['message'].value.trim();
 
     clearMarks();
     var missing = [], bad = [];
-    if (!name) { missing.push('your name'); bad.push(form.name); }
+    if (!name) { missing.push('your name'); bad.push(form.elements['name']); }
     if (!email) { missing.push('your email'); bad.push(form.email); }
 
     if (missing.length) {
@@ -407,9 +407,14 @@ document.querySelectorAll('#nav a[href^="#"], #nav .nav-logo').forEach(function(
     send.disabled = true;
     say('Sending.', true);
 
-    var body = new URLSearchParams({
-      'form-name': 'contact', name: name, email: email, topic: topic, message: message
-    }).toString();
+var body = new URLSearchParams({
+    'form-name': 'contact',
+    name: name,
+    email: email,
+    topic: topic,
+    message: message,
+    _honey: form.elements['_honey'].value
+}).toString();
 
     fetch('/', {
       method: 'POST',
